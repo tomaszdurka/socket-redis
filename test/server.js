@@ -6,8 +6,11 @@ var Server = require('../lib/server');
 
 describe('Server tests', function() {
 
-  var REDIS_PORT = process.env.REDIS_PORT || 6379;
-  var REDIS_HOST = process.env.REDIS_HOST || 'localhost';
+  var redis_connection = {
+    'host': process.env.REDIS_HOST || 'localhost',
+    'port': process.env.REDIS_PORT || 6379,
+    'password': process.env.REDIS_PASS || null
+  }
   var STATUS_PORT = process.env.STATUS_PORT || 9993;
   var STATUS_SECRET = process.env.STATUS_SECRET || 'secret';
 
@@ -16,7 +19,7 @@ describe('Server tests', function() {
   }
 
   beforeEach(function(done) {
-    this.server = new Server(REDIS_HOST, STATUS_PORT, STATUS_SECRET);
+    this.server = new Server(redis_connection, STATUS_PORT, STATUS_SECRET);
     setTimeout(done, 100);
   });
 
@@ -194,7 +197,7 @@ describe('Server tests', function() {
       worker = getWorkerStub();
       this.server.addWorker(worker);
 
-      downPublisher = redis.createClient(REDIS_PORT, REDIS_HOST);
+      downPublisher = redis.createClient(redis_connection);
       publishDown = function(message) {
         downPublisher.publish('socket-redis-down', JSON.stringify(message));
       };

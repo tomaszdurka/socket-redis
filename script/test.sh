@@ -1,5 +1,7 @@
 #!/bin/bash -e
 
-wait-for-it redis:6379
+PORT=${REDIS_PORT:-6379}
+
+wait-for-it redis:${PORT}
 npm install
 npm test

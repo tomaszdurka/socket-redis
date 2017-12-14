@@ -10,6 +10,10 @@ services:
       - "8091:8091"
     depends_on:
       - redis
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 63799
+      REDIS_PASS: foopass
 
   redis:
     image: redis:3.2.6

@@ -28,7 +28,7 @@
     "bluebird": "^3.4.7",
     "log4js": "~0.6.21",
     "optimist": "~0.6.1",
-    "redis": "~0.12.1",
+    "redis": "~2.8.0",
     "sockjs": "0.3.17",
     "underscore": "~1.7.0",
     "uuid": "^3.0.1",

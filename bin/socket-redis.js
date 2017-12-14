@@ -2,10 +2,19 @@
 var socketRedis = require('../socket-redis.js');
 var childProcess = require('child_process');
 var utils = require('../lib/utils.js');
-var optimist = require('optimist').default('log-dir', null);
+var optimist = require('optimist');
 var fs = require('fs');
-var argv = optimist.default('redis-host', 'localhost').argv;
-var redisHost = argv['redis-host'];
+var argv = optimist.default({
+  'log-dir': null,
+  'redis-host': 'localhost',
+  'redis-port': 6379,
+  'redis-pass': null
+}).argv;
+var redisConnection = {
+  'host': argv['redis-host'],
+  'port': argv['redis-port'],
+  'password':argv['redis-pass']
+}
 var logDir = argv['log-dir'];
 var sockjsClientUrl = argv['sockjs-client-url'];
 var sslKey = argv['ssl-key'];
@@ -21,7 +30,7 @@ if (logDir) {
 if (!process.send) {
   argv = optimist.default('socket-ports', '8090').default('status-port', '8085').argv;
   var socketPorts = String(argv['socket-ports']).split(',');
-  var publisher = new socketRedis.Server(redisHost, argv['status-port'], argv['status-secret']);
+  var publisher = new socketRedis.Server(redisConnection, argv['status-port'], argv['status-secret']);
 
   socketPorts.forEach(function(socketPort) {
     var args = ['--socket-port=' + socketPort];
