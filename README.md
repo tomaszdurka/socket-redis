@@ -71,7 +71,7 @@ docker-compose run socket-redis ./script/test.sh
 
 In development, you can mount the repository as a volume, then node modules will be installed on you host an reused for each run
 ```
-docker-compose run --volume $(pwd):/opt/socket-redis -e REDIS_HOST=redis socket-redis ./script/test.sh
+docker-compose run --volume $(pwd):/opt/socket-redis socket-redis ./script/test.sh
 ```
 
 ### Messages published to redis pub/sub channel `socket-redis-up`:
