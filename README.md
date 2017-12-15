@@ -40,6 +40,8 @@ socket-redis --socket-ports=8090,8091,8092
 
 Available options:
 - `--redis-host` Specify host of redis server. Defaults to `localhost`.
+- `--redis-port` Specify port. Default 6379
+- `--redis-pass` Specify password if needed
 - `--socket-ports` Comma separated public ports which SockJS workers will listen on. Defaults to `8090`.
 - `--log-dir` Directory where log is stored. Script will try to create directory if needed. Defaults to `null` which means it will output to stdout.
 - `--sockjs-client-url` Specify custom url for sockjs-client library.
@@ -64,12 +66,12 @@ docker-compose run --volume $(pwd):/opt/socket-redis -p 8085:8085 -p 8090:8090 -
 ### Test
 
 ```
-docker-compose run -e REDIS_HOST=redis socket-redis ./script/test.sh
+docker-compose run socket-redis ./script/test.sh
 ```
 
 In development, you can mount the repository as a volume, then node modules will be installed on you host an reused for each run
 ```
-docker-compose run --volume $(pwd):/opt/socket-redis -e REDIS_HOST=redis socket-redis ./script/test.sh
+docker-compose run --volume $(pwd):/opt/socket-redis socket-redis ./script/test.sh
 ```
 
 ### Messages published to redis pub/sub channel `socket-redis-up`:
