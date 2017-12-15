@@ -14,7 +14,7 @@ install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 
-script: docker-compose run --volume $(pwd):/opt/socket-redis socket-redis ./script/test.sh
+script: docker-compose run socket-redis ./script/test.sh
 
 deploy:
   provider: npm
