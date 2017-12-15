@@ -12,9 +12,11 @@ var argv = optimist.default({
 }).argv;
 var redisConnection = {
   'host': argv['redis-host'],
-  'port': argv['redis-port'],
-  'password':argv['redis-pass']
+  'port': argv['redis-port']
 };
+if (null !== argv['redis-pass']) {
+  redisConnection['password'] = argv['redis-pass'];
+}
 var logDir = argv['log-dir'];
 var sockjsClientUrl = argv['sockjs-client-url'];
 var sslKey = argv['ssl-key'];
