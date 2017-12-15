@@ -29,7 +29,7 @@ Server.prototype.start = function(port) {
   return new Promise(function(resolve, reject) {
     setTimeout(function() {
       reject(new Error('Server start timeout'));
-    }, 1900);
+    }, 1000 * 10);
 
     promise.childProcess.stdout.on('data', _.debounce(function() {
       promise.childProcess.stdout.removeAllListeners('data');

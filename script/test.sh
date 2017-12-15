@@ -1,7 +1,9 @@
 #!/bin/bash -e
 
-PORT=${REDIS_PORT:-6379}
+export REDIS_HOST=${REDIS_HOST:-redis}
+export REDIS_PORT=${REDIS_PORT:-63799}
+export REDIS_PASS=${REDIS_PASS:-foopass}
 
-wait-for-it redis:${PORT}
+wait-for-it ${REDIS_HOST}:${REDIS_PORT}
 npm install
 npm test

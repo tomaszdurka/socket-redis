@@ -1,7 +1,10 @@
-socket-redis [![Version](https://img.shields.io/npm/v/socket-redis.svg)](https://www.npmjs.com/package/socket-redis)
+socket-redis
 ============
 *socket-redis* is a WebSocket pub/sub server and client, exposing an API over Redis
 (allowing you to use WebSocket functionality in your application using a Redis client).
+
+[![Version](https://img.shields.io/npm/v/socket-redis.svg)](https://www.npmjs.com/package/socket-redis)
+[![Build Status](https://img.shields.io/travis/cargomedia/socket-redis/master.svg)](https://travis-ci.org/cargomedia/socket-redis)
 
 About
 -----
@@ -53,23 +56,21 @@ Available options:
 - `--ssl-passphrase` Specify file containing the ssl passphrase.
 
 #### with Docker
-
 ```
 docker-compose up socket-redis
 ```
 
-In development, you can mount the repository has a volume and expose ports manually
+For development mount the repo into the container:
 ```
-docker-compose run --volume $(pwd):/opt/socket-redis -p 8085:8085 -p 8090:8090 -p 8091:8091 socket-redis
+docker-compose run --volume $(pwd):/opt/socket-redis --service-ports socket-redis
 ```
 
 ### Test
-
 ```
 docker-compose run socket-redis ./script/test.sh
 ```
 
-In development, you can mount the repository as a volume, then node modules will be installed on you host an reused for each run
+For development mount the repo into the container:
 ```
 docker-compose run --volume $(pwd):/opt/socket-redis socket-redis ./script/test.sh
 ```
