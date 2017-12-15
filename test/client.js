@@ -31,6 +31,7 @@ describe('Client tests', function() {
     });
 
     it('pub after sub', function(done) {
+      this.timeout(4000);
       var event = 'event';
       var channelName = 'channel-name';
       var testData = {foo: 'bar'};
@@ -85,6 +86,7 @@ describe('Client tests', function() {
     });
 
     it('pub after sub', function(done) {
+      this.timeout(4000);
       var event = 'event';
       var channelName = 'channel-name';
       var testData = {foo: 'bar'};
