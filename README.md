@@ -60,7 +60,7 @@ docker-compose up socket-redis
 
 In development, you can mount the repository has a volume and expose ports manually
 ```
-docker-compose run --volume $(pwd):/opt/socket-redis -p 8085:8085 -p 8090:8090 -p 8091:8091 socket-redis
+docker-compose run --volume $(pwd):/opt/socket-redis --service-ports socket-redis
 ```
 
 ### Test

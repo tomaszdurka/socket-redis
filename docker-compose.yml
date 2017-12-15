@@ -3,17 +3,14 @@ services:
   socket-redis:
     build: .
     image: cargomedia/socket-redis:latest
-    command: ./bin/socket-redis.js --redis-host=redis --status-port=8085 --socket-ports=8090,8091 --status-secret=foo
+    command: './bin/socket-redis.js --redis-host=redis --redis-port=63799 --redis-pass=foopass --status-port=8085 --socket-ports=8090,8091 --status-secret=foo'
+    restart: on-failure
     ports:
-      - "8085:8085"
-      - "8090:8090"
-      - "8091:8091"
+      - '8085:8085'
+      - '8090:8090'
+      - '8091:8091'
     depends_on:
       - redis
-    environment:
-      REDIS_HOST: redis
-      REDIS_PORT: 63799
-      REDIS_PASS: foopass
 
   redis:
     image: redis:3.2.6
