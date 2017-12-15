@@ -56,20 +56,23 @@ Available options:
 - `--ssl-passphrase` Specify file containing the ssl passphrase.
 
 #### with Docker
-
 ```
 docker-compose up socket-redis
 ```
 
-In development, you can mount the repository has a volume and expose ports manually
+For development mount the repo into the container:
 ```
-docker-compose run --service-ports socket-redis
+docker-compose run --volume $(pwd):/opt/socket-redis --service-ports socket-redis
 ```
 
 ### Test
-
 ```
 docker-compose run socket-redis ./script/test.sh
+```
+
+For development mount the repo into the container:
+```
+docker-compose run --volume $(pwd):/opt/socket-redis socket-redis ./script/test.sh
 ```
 
 ### Messages published to redis pub/sub channel `socket-redis-up`:

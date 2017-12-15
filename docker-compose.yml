@@ -5,8 +5,6 @@ services:
     image: cargomedia/socket-redis:latest
     command: './bin/socket-redis.js --redis-host=redis --redis-port=63799 --redis-pass=foopass --status-port=8085 --socket-ports=8090,8091 --status-secret=foo'
     restart: on-failure
-    volumes:
-    - .:/opt/socket-redis
     ports:
       - '8085:8085'
       - '8090:8090'
